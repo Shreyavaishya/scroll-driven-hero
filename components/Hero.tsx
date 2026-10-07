@@ -14,13 +14,10 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const titleLetters = titleRef.current?.querySelectorAll(".letter");
-      const stats = statsRef.current?.querySelectorAll(".stat");
+      const titleLetters = Array.from(titleRef.current?.querySelectorAll(".letter") ?? []);
+      const stats = Array.from(statsRef.current?.querySelectorAll(".stat") ?? []);
 
-      // -----------------------------
-      // INITIAL LOAD ANIMATION
-      // -----------------------------
-
+      
       // Headline letter-by-letter reveal
       gsap.from(titleLetters, {
         y: 40,
@@ -40,9 +37,7 @@ export default function Hero() {
         ease: "power3.out",
       });
 
-      // -----------------------------
-      // SCROLL-DRIVEN VISUAL
-      // -----------------------------
+    
 
       gsap.to(visualRef.current, {
         y: 480,
@@ -58,9 +53,7 @@ export default function Hero() {
         },
       });
 
-      // -----------------------------
-      // SCROLL-DRIVEN HEADLINE
-      // -----------------------------
+      
 
       gsap.to(titleRef.current, {
         y: -140,
